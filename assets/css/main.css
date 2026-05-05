@@ -1,0 +1,103 @@
+:root {
+  --color-accent: #4cffc9;
+  --color-accent-dark: #2a9d6e;
+  --color-accent-bg: rgba(76, 255, 201, 0.15);
+  --color-middle: #5e8278;
+  --color-grey: #626262;
+  --color-light: #f7fffd;
+  --color-dark: #00281e;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-border-subtle: rgba(0, 0, 0, 0.05);
+  --color-border-light: rgba(0, 0, 0, 0.1);
+  --color-grey-light: rgb(187, 187, 187);
+  --color-grey-dark: rgb(124, 124, 124);
+
+  --color-light-title: #d6f2eb;
+  --color-dark-title: #003d2e;
+
+  --font-title: "Bree Serif", serif;
+  --font-body: "Inter", sans-serif;
+}
+
+.title {
+  font-family: var(--font-title);
+  font-size: 3rem;
+  line-height: 1.25;
+}
+@media (min-width: 768px) {
+  .title {
+    font-size: 3.75rem;
+  }
+}
+
+.section-title-light {
+  font-family: var(--font-title);
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: var(--color-light-title);
+}
+
+.section-title-dark {
+  font-family: var(--font-title);
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: var(--color-dark-title);
+}
+
+.sub-title-dark {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-dark-title);
+}
+
+.sub-title-light {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-light-title);
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-middle);
+}
+
+.card-title-light {
+  font-family: var(--font-title);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-light-title);
+}
+
+.card-title-dark {
+  font-family: var(--font-title);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-dark-title);
+}
+
+.body-light {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: var(--color-grey-light);
+}
+
+.body-dark {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.625;
+  color: var(--color-grey-dark);
+}
+
+.display {
+  font-family: var(--font-title);
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1;
+}

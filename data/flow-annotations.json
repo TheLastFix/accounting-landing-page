@@ -1,0 +1,60 @@
+{
+  "public/regular-flow.svg": {
+    "viewBox": {
+      "width": 768,
+      "height": 1250
+    },
+    "annotations": [
+      {
+        "x": 15.16,
+        "y": 9.06,
+        "text": "Reçus perdus ?",
+        "weight": "normal"
+      },
+      {
+        "x": 57.54,
+        "y": 35.67,
+        "text": "Accumulation",
+        "weight": "normal"
+      },
+      {
+        "x": 8,
+        "y": 54.63,
+        "text": "Classement manuel (4-8 h / mois)",
+        "weight": "normal"
+      },
+      {
+        "x": 8,
+        "y": 74.23,
+        "text": "Saisie manuelle (3-4 h / mois)",
+        "weight": "normal"
+      }
+    ]
+  },
+  "public/onesnap-flow.svg": {
+    "viewBox": {
+      "width": 768,
+      "height": 1250
+    },
+    "annotations": [
+      {
+        "x": 13,
+        "y": 10.5,
+        "text": "Capture instantanée",
+        "weight": "normal"
+      },
+      {
+        "x": 13,
+        "y": 82.23,
+        "text": "Les petites mains se",
+        "weight": "normal"
+      },
+      {
+        "x": 13,
+        "y": 84.79,
+        "text": "mettent au travail.",
+        "weight": "normal"
+      }
+    ]
+  }
+}
