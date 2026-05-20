@@ -12,28 +12,28 @@
       <div class="text-center">
         <h1 class="title text-white mt-8 mb-6">
           Complexe, long et onéreux <br />
-          On sait ce que c'est.<br />
+          La compta, on sait ce que c'est.<br />
         </h1>
         <p class="text-accent text-xl mb-12">
-          Ta comptabilité en une photo. Les peties mains font le reste.
+          Ta comptabilité en une photo. Les petites mains font le reste.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
           <UiButton
             variant="outline"
-            href="#comment"
+            href="#workflow"
             size="lg"
             class="!text-white !border-accent !border-2 hover:!bg-accent hover:!text-dark"
             >Comment ça marche</UiButton
           >
-          <UiButton variant="accent" href="#" size="lg"
-            >Essayer gratuitement</UiButton
+          <UiButton variant="accent" href="mailto:contact@onesnap.ch" size="lg"
+            >Demander une démo</UiButton
           >
         </div>
         <p class="text-white/40 text-sm">30 jours gratuits. Sans engagement.</p>
         <div class="mt-10 h-[350px]">
           <img
             src="/public/home-2.svg"
-            alt="OneSnap - image representant les peties mains qui sont heureux en traitant les factures car c'est plus simple mtn."
+            alt="OneSnap - image representant les petites mains qui sont heureux en traitant les factures car c'est plus simple mtn."
             class="w-full h-full object-contain"
           />
         </div>
@@ -42,17 +42,19 @@
 
     <!-- FLOW COMPARISON -->
     <UiSection
+      id="workflow"
       variant="light"
       subtitle="Le workflow"
       title="Tu as dis gain de temps ?"
       fullWidth
+      class="!pb-0"
+      style="background-color: var(--color-medium-light)"
     >
-      <div
-        class="grid grid-cols-1 md:grid-cols-2 items-start"
-        style="background-color: var(--color-light-title)"
-      >
-        <div class="pl-52 pr-12 py-20">
-          <h3 class="sub-title-dark text-right mb-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 items-start">
+        <div
+          class="px-4 py-12 md:py-20 md:pl-12 md:pr-6 lg:pl-24 lg:pr-12 xl:pl-44 xl:pr-16"
+        >
+          <h3 class="sub-title-dark text-center md:text-right">
             La réalité de la comptabilité
           </h3>
           <div class="relative">
@@ -83,7 +85,7 @@
               <span class="text-lg text-middle ml-2">jours</span>
             </div>
           </div>
-          <p class="card-title-dark mt-8 h-24">
+          <p class="card-title-dark mt-8 h-auto md:h-24">
             Bilan J+37 : déjà obsolète.
             <br />
             Tu paies pour la saisie, pas pour de la stratégie.
@@ -91,8 +93,13 @@
             Un coût caché énorme pour ton entreprise.
           </p>
         </div>
-        <div class="bg-dark rounded-l-2xl pr-52 pl-12 py-20">
-          <h3 class="sub-title-light mb-6">Avec OneSnap</h3>
+
+        <!-- Colonne Droite (OneSnap) -->
+        <!-- Modification : px-4 sur mobile, py-12 sur mobile, coins arrondis uniquement sur tablette/desktop, et marges asymétriques fluides -->
+        <div
+          class="bg-dark md:rounded-l-2xl px-4 py-12 md:py-20 md:pr-12 md:pl-6 lg:pr-24 lg:pl-12 xl:pr-44 xl:pl-16"
+        >
+          <h3 class="sub-title-light text-center md:text-left">Avec OneSnap</h3>
           <div class="relative">
             <img
               src="/onesnap-flow.svg"
@@ -121,20 +128,22 @@
               <span class="text-lg text-white/60 ml-2">jours</span>
             </div>
           </div>
-          <p class="card-title-light mt-8 h-24">
+          <p class="card-title-light mt-8 h-auto md:h-24">
             Les données sont à jour et offrent une vision financière complète
             dans un dashboard clair : chiffre d'affaires, liquidité, paiements,
-            etc.
+            charges, rentabilité, etc.
           </p>
         </div>
       </div>
-      <div class="max-w-4xl mx-auto mt-36">
+      <!-- TODO: Réactiver le dashboard quand il sera prêt
+      <div class="max-w-4xl mx-auto mt-20 md:mt-36 px-4">
         <img
           src="/dashboard.png"
           alt="OneSnap - dashboard"
           class="w-full rounded-2xl shadow-2xl"
         />
       </div>
+      -->
     </UiSection>
 
     <!-- COMMENT CA MARCHE -->
@@ -143,127 +152,216 @@
       subtitle="OneSnap, comment ça marche"
       title="3 étapes. C'est tout."
     >
-      <div class="space-y-12">
-        <!-- Step 1 -->
-        <div>
-          <div class="flex items-center gap-3 mb-6">
-            <span
-              class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-accent text-dark font-title text-lg"
-              >1</span
-            >
-            <h3 class="sub-title-dark">Transfère les justificatifs</h3>
-          </div>
-          <UiCardGrid :cols="3">
-            <UiCard variant="light">
-              <div class="flex justify-center mb-4">
-                <svg
-                  class="w-8 h-8 text-accent"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
+      <UiTabs
+        :tabs="[
+          { key: 'pme', title: 'Je suis une entreprise' },
+          { key: 'comptable', title: 'Je suis comptable' },
+        ]"
+      >
+        <template #tab-pme>
+          <div class="space-y-12">
+            <!-- Step 1 -->
+            <div>
+              <div class="flex items-center gap-3 mb-6">
+                <span
+                  class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-accent text-dark font-title text-lg"
+                  >1</span
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"
-                  />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0z"
-                  />
-                </svg>
+                <h3 class="sub-title-dark">Transfère les justificatifs</h3>
               </div>
-              <h4 class="card-title-dark mb-2">Par photo via WhatsApp</h4>
-              <p class="body-dark">
-                Prends les reçus en photo et envoie-les directement par
-                WhatsApp.
-              </p>
-            </UiCard>
-            <UiCard variant="light">
-              <div class="flex justify-center mb-4">
-                <svg
-                  class="w-8 h-8 text-accent"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
-                  />
-                </svg>
-              </div>
-              <h4 class="card-title-dark mb-2">En pièces jointes par email</h4>
-              <p class="body-dark">
-                Transfère les factures par email, elles arrivent
-                automatiquement.
-              </p>
-            </UiCard>
-            <UiCard variant="light">
-              <div class="flex justify-center mb-4">
-                <svg
-                  class="w-8 h-8 text-accent"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
-                  />
-                </svg>
-              </div>
-              <h4 class="card-title-dark mb-2">Manuellement dans l'app</h4>
-              <p class="body-dark">
-                Importe les PDF ou images directement dans l'application web.
-              </p>
-            </UiCard>
-          </UiCardGrid>
-        </div>
+              <UiCardGrid :cols="3">
+                <UiCard variant="light">
+                  <div class="flex justify-center mb-4">
+                    <svg
+                      class="w-8 h-8 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z"
+                      />
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0z"
+                      />
+                    </svg>
+                  </div>
+                  <h4 class="card-title-dark mb-2">Par photo via WhatsApp</h4>
+                  <p class="body-dark">
+                    Prends les reçus en photo et envoie-les directement par
+                    WhatsApp.
+                  </p>
+                </UiCard>
+                <UiCard variant="light">
+                  <div class="flex justify-center mb-4">
+                    <svg
+                      class="w-8 h-8 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+                      />
+                    </svg>
+                  </div>
+                  <h4 class="card-title-dark mb-2">
+                    En pièces jointes par email
+                  </h4>
+                  <p class="body-dark">
+                    Transfère les factures par email, elles arrivent
+                    automatiquement.
+                  </p>
+                </UiCard>
+                <UiCard variant="light">
+                  <div class="flex justify-center mb-4">
+                    <svg
+                      class="w-8 h-8 text-accent"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
+                      />
+                    </svg>
+                  </div>
+                  <h4 class="card-title-dark mb-2">Manuellement dans l'app</h4>
+                  <p class="body-dark">
+                    Importe les PDF ou images directement dans l'application
+                    web.
+                  </p>
+                </UiCard>
+              </UiCardGrid>
+            </div>
 
-        <!-- Steps 2 & 3 -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="relative">
-            <img
-              src="/how-it-works.svg"
-              alt=""
-              class="absolute right-full top-1/2 -translate-y-1/2 max-h-full w-auto"
-            />
-            <UiCard variant="dark">
-              <span
-                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-accent text-dark font-title text-lg mb-4"
-                >2</span
-              >
-              <h3 class="sub-title-light mb-2">
-                Les peties mains s'en occupent
-              </h3>
-              <p class="body-light">
-                Les données sont extraites, triées, catégorisées au fur et à
-                mesure pour une comptabilité toujours à jour.
-              </p>
-            </UiCard>
+            <!-- Steps 2 & 3 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="relative">
+                <img
+                  src="/how-it-works.svg"
+                  alt=""
+                  class="absolute right-full top-1/2 -translate-y-1/2 max-h-full w-auto"
+                />
+                <UiCard variant="dark">
+                  <span
+                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-accent text-dark font-title text-lg mb-4"
+                    >2</span
+                  >
+                  <h3 class="sub-title-light mb-2">
+                    Les petites mains s'en occupent
+                  </h3>
+                  <p class="body-light">
+                    Les données sont extraites, triées, catégorisées au fur et à
+                    mesure pour une comptabilité toujours à jour.
+                  </p>
+                </UiCard>
+              </div>
+              <UiCard variant="dark">
+                <span
+                  class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-accent text-dark font-title text-lg mb-4"
+                  >3</span
+                >
+                <h3 class="sub-title-light mb-2">
+                  Une vision claire, moins de stress
+                </h3>
+                <p class="body-light">
+                  Tu as une vision financière claire de ton entreprise pour
+                  prendre les bonnes décisions.
+                </p>
+              </UiCard>
+            </div>
           </div>
-          <UiCard variant="dark">
-            <span
-              class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-accent text-dark font-title text-lg mb-4"
-              >3</span
-            >
-            <h3 class="sub-title-light mb-2">
-              Une vision claire, moins de stress
-            </h3>
-            <p class="body-light">
-              Tu as une vision financière claire de ton entreprise pour prendre
-              les bonnes décisions.
-            </p>
-          </UiCard>
-        </div>
-      </div>
+        </template>
+
+        <template #tab-comptable>
+          <div class="space-y-12">
+            <!-- Steps 1 & 2 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="relative">
+                <UiCard variant="light">
+                  <span
+                    class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-accent text-dark font-title text-lg mb-4"
+                    >1</span
+                  >
+                  <h3 class="sub-title-dark mb-2">
+                    Les clients transmet les justificatifs
+                  </h3>
+                  <p class="body-dark">
+                    Chaque client peut transmettre ses justificatifs et reçu
+                    bancaire sur le mail ou le numero whatsapp fournis. Les
+                    données arrivent directement traitées et intégrées dans son
+                    espace comptable.
+                  </p>
+                </UiCard>
+              </div>
+              <UiCard variant="light">
+                <span
+                  class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-accent text-dark font-title text-lg mb-4"
+                  >2</span
+                >
+                <h3 class="sub-title-dark mb-2">
+                  Validation des données extraites
+                </h3>
+                <p class="body-dark">
+                  La majorité de l'extraction est correcte. Cependant, un petit
+                  nombre de factures peuvent contenir des erreurs qui
+                  nécessitent une correction manuelle. Les entrées sont alors
+                  générées.
+                </p>
+              </UiCard>
+            </div>
+            <!-- Step 3 -->
+            <div>
+              <div class="flex items-center gap-3 mb-6">
+                <span
+                  class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-accent text-dark font-title text-lg"
+                  >3</span
+                >
+                <h3 class="sub-title-dark">
+                  La comptabilité à haute valeur ajoutée
+                </h3>
+              </div>
+              <UiCardGrid :cols="3">
+                <UiCard variant="dark">
+                  <h4 class="card-title-light mb-2">Complétion des entrées</h4>
+                  <p class="body-light">
+                    La saisie est déjà faite. Il suffit de compléter et vérifier
+                    les numéros de compte.
+                  </p>
+                </UiCard>
+                <UiCard variant="dark">
+                  <h4 class="card-title-light mb-2">Raprochement bancaire</h4>
+                  <p class="body-light">
+                    Le logiciel rapproche automatiquement les paiements
+                    bancaires avec les factures.
+                  </p>
+                </UiCard>
+                <UiCard variant="dark">
+                  <h4 class="card-title-light mb-2">
+                    Entrée manuelle et bouclement
+                  </h4>
+                  <p class="body-light">
+                    Il reste a créer les entrées restantes (ammortissements,
+                    salaires) et effectuer le bouclement.
+                  </p>
+                </UiCard>
+              </UiCardGrid>
+            </div>
+          </div>
+        </template>
+      </UiTabs>
     </UiSection>
 
     <!-- FONCTIONNALITES -->
@@ -273,6 +371,7 @@
       title="Tout ce qu'il te faut. Rien de superflu."
     >
       <UiFeatureList :features="features" />
+      <!-- TODO: Réactiver le dashboard quand il sera prêt
       <div class="grid grid-cols-1 md:grid-cols-1 items-start mt-28">
         <img
           src="/public/mockup-hero.png"
@@ -280,6 +379,7 @@
           class="w-full rounded-2xl shadow-2xl"
         />
       </div>
+      -->
     </UiSection>
 
     <!-- CONFIANCE -->
@@ -301,7 +401,7 @@
       </UiCardGrid>
     </UiSection>
 
-    <!-- PRIX -->
+    <!-- PRIX (caché - remplacé par la section demo)
     <UiSection
       id="prix"
       variant="dark"
@@ -359,6 +459,49 @@
         />
       </UiCardGrid>
     </UiSection>
+    -->
+
+    <!-- DEMO -->
+    <UiSection
+      id="demo"
+      variant="light"
+      subtitle="Démonstration"
+      title="Voir OneSnap en action."
+      style="background-color: var(--color-medium-light)"
+    >
+      <div
+        class="flex flex-col md:flex-row md:items-center md:justify-between gap-6"
+      >
+        <div>
+          <p class="text-middle text-lg max-w-xl">
+            Tu veux voir comment ça fonctionne concrètement ? On te fait une
+            démo personnalisée, sans engagement.
+          </p>
+          <p class="text-middle/60 text-sm mt-2">
+            contact@onesnap.ch — réponse sous 24h
+          </p>
+        </div>
+        <a
+          href="mailto:contact@onesnap.ch"
+          class="inline-flex items-center gap-3 px-8 py-4 bg-accent text-dark font-title text-xl rounded-xl hover:bg-accent/90 transition-colors shrink-0"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+            />
+          </svg>
+          Demander une démo
+        </a>
+      </div>
+    </UiSection>
 
     <!-- FAQ -->
     <UiSection id="faq" variant="light" narrow title="Questions fréquentes">
@@ -405,7 +548,7 @@ const features = [
   {
     icon: "M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z",
     title: "Tableau de bord",
-    desc: "Vision temps réel — trésorerie, CA, charges, rentabilité.",
+    desc: "Vision temps réel — trésorerie, CA, charges, rentabilité, payements.",
   },
   {
     icon: "M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5",
@@ -420,7 +563,7 @@ const features = [
   {
     icon: "M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z",
     title: "Espaces partagés",
-    desc: "Espace partagé comptable / client / tiers.",
+    desc: "Espace partagé entre comptable, entreprise et autres tiers.",
   },
   {
     icon: "M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
@@ -455,15 +598,15 @@ const benefices = [
 const confiance = [
   {
     title: "Hébergé en Europe",
-    desc: "Serveurs certifiés, protégés par le RGPD. Pas de CLOUD Act américain.",
+    desc: "Serveurs certifiés, protégés par la RGPD et nLPD. Pas de CLOUD Act américain.",
   },
   {
     title: "Swiss made",
-    desc: "Développé en suisse, suppport en suisse. Éligible au label Swiss Made Software",
+    desc: "Développement et support en Suisse.",
   },
   {
-    title: "Tu exportes tout, quand tu veux",
-    desc: "PDF, Excel, formats comptables. Pas de lock-in. Si tu pars, tu repars avec tout.",
+    title: "Tu exportes tes données, à tout moment",
+    desc: "Export groupé des entrées, résultats et documents.",
   },
 ];
 
@@ -472,7 +615,7 @@ const faqs = [
     q: "Est-ce que ça remplace ma fiduciaire ?",
     a: `Non, OneSnap n'a pas vocation à remplacer votre fiduciaire. OneSnap automatise la partie la plus chronophage : la saisie, la catégorisation et l'extraction des données comptables. Votre fiduciaire conserve le conseil fiscal, le bouclement annuel et les décisions stratégiques.
 
-    C'est ce qu'on appelle le modèle **"pré-comptabilité parfaite"** : vous arrivez chez votre fiduciaire avec une comptabilité déjà prête, et vous ne payez que pour la valeur ajoutée (conseil, optimisation), pas pour la saisie.`,
+    C'est ce qu'on appelle le modèle "pré-comptabilité parfaite" : vous arrivez chez votre fiduciaire avec une comptabilité déjà prête, et vous ne payez que pour la valeur ajoutée (conseil, optimisation), pas pour la saisie.`,
   },
   {
     q: "Est-ce que mon fiduciaire peut travailler avec OneSnap ?",

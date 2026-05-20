@@ -1,20 +1,19 @@
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --color-accent: #4cffc9;
-  --color-accent-dark: #2a9d6e;
-  --color-accent-bg: rgba(76, 255, 201, 0.15);
-  --color-middle: #5e8278;
-  --color-grey: #626262;
   --color-light: #f7fffd;
+  --color-medium-light: #d6f2eb;
+  --color-medium-dark: #003d2e;
   --color-dark: #00281e;
+  --color-neutral: #5e8278;
+
   --color-white: #ffffff;
   --color-black: #000000;
-  --color-border-subtle: rgba(0, 0, 0, 0.05);
-  --color-border-light: rgba(0, 0, 0, 0.1);
   --color-grey-light: rgb(187, 187, 187);
   --color-grey-dark: rgb(124, 124, 124);
-
-  --color-light-title: #d6f2eb;
-  --color-dark-title: #003d2e;
 
   --font-title: "Bree Serif", serif;
   --font-body: "Inter", sans-serif;
@@ -27,7 +26,7 @@
 }
 @media (min-width: 768px) {
   .title {
-    font-size: 3.75rem;
+    font-size: 3.5rem;
   }
 }
 
@@ -35,28 +34,28 @@
   font-family: var(--font-title);
   font-size: 2.25rem;
   font-weight: 600;
-  color: var(--color-light-title);
+  color: var(--color-medium-light);
 }
 
 .section-title-dark {
   font-family: var(--font-title);
   font-size: 2.25rem;
   font-weight: 600;
-  color: var(--color-dark-title);
+  color: var(--color-medium-dark);
 }
 
 .sub-title-dark {
   font-family: var(--font-title);
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--color-dark-title);
+  color: var(--color-medium-dark);
 }
 
 .sub-title-light {
   font-family: var(--font-title);
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--color-light-title);
+  color: var(--color-medium-light);
 }
 
 .section-label {
@@ -64,21 +63,21 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--color-middle);
+  color: var(--color-neutral);
 }
 
 .card-title-light {
   font-family: var(--font-title);
   font-size: 1.125rem;
   font-weight: 600;
-  color: var(--color-light-title);
+  color: var(--color-medium-light);
 }
 
 .card-title-dark {
   font-family: var(--font-title);
   font-size: 1.125rem;
   font-weight: 600;
-  color: var(--color-dark-title);
+  color: var(--color-medium-dark);
 }
 
 .body-light {

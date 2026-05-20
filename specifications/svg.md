@@ -6,7 +6,7 @@ _please put all link path absolute from the root of the project_
 
 1. User exports SVG from Gravit Designer to `public/` directory
    ↓
-2. Run `node [scripts/normalize-svg.mjs](scripts/normalize-svg.mjs)`
+2. Run `node scripts/normalize-svg.mjs`
    - Parse each SVG file listed in `SVG_FILES`
    - Map stroke widths to 3 levels: `<4 → 2`, `4-7 → 4`, `>7 → 6`
    - Ensure `vector-effect="non-scaling-stroke"` on all stroked elements

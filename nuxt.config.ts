@@ -1,14 +1,15 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+  ssr: false,
   modules: ['@nuxtjs/tailwindcss'],
   css: ['~/assets/css/main.css'],
   app: {
+    baseURL: '/static/landing/',
     head: {
       title: 'OneSnap',
       link: [
-        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'icon', type: 'image/svg+xml', href: '/static/landing/favicon.svg' },
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
         {

@@ -25,8 +25,8 @@ const links = [
           {{ link.label }}
         </a>
       </div>
-      <UiButton variant="accent" href="#essai" class="text-sm py-2 px-4">
-        Essayer
+      <UiButton variant="accent" href="mailto:contact@onesnap.ch" class="text-sm py-2 px-4">
+        Démo
       </UiButton>
     </div>
   </nav>
