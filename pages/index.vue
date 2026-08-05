@@ -1,21 +1,15 @@
 <template>
   <div class="font-body antialiased">
     <!-- HERO -->
-    <UiSection
-      variant="dark"
-      narrow
-      center
-      full-height
-      class="bg-no-repeat bg-cover bg-left"
-      style="background-image: url(&quot;/Home.svg&quot;)"
-    >
+    <UiSection id="home" variant="dark" narrow center full-height>
+      <!-- class="bg-no-repeat bg-cover bg-left" style="background-image: url(&quot;/Home.svg&quot;)"-->
       <div class="text-center">
         <h1 class="title text-white mt-8 mb-6">
-          Complexe, long et onéreux <br />
-          La compta, on sait ce que c'est.<br />
+          Moins d'admin. Moins d'erreurs.<br />
+          Plus de temps pour ton entreprise.<br />
         </h1>
         <p class="text-accent text-xl mb-12">
-          Ta comptabilité en une photo. Les petites mains font le reste.
+          Ta comptabilité en une photo. Une visibilité en temps réel.
         </p>
         <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
           <UiButton
@@ -33,7 +27,7 @@
         <div class="mt-10 h-[350px]">
           <img
             src="/public/home-2.svg"
-            alt="OneSnap - image representant les petites mains qui sont heureux en traitant les factures car c'est plus simple mtn."
+            alt="OneSnap - Ton équipe en backup qui s'active pour trier tes factures avec le sourire."
             class="w-full h-full object-contain"
           />
         </div>
@@ -67,30 +61,40 @@
               <span
                 v-for="(ann, i) in regularAnnotations"
                 :key="i"
-                class="absolute leading-relaxed"
+                class="absolute leading-relaxed whitespace-pre-line"
                 :class="'card-title-dark'"
                 :style="{
                   left: ann.x + '%',
                   top: ann.y + '%',
                   transform: 'translateY(-0.3em)',
                 }"
+                >{{ ann.text }}</span
               >
-                {{ ann.text }}
-              </span>
             </div>
+          </div>
+          <div class="flex justify-end -mt-12 mr-2">
             <div
-              class="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm rounded-xl px-5 py-2 shadow-lg"
+              class="bg-white/90 backdrop-blur-sm rounded-xl px-5 py-2 shadow-lg"
             >
-              <span class="text-5xl font-bold text-dark font-title">37</span>
-              <span class="text-lg text-middle ml-2">jours</span>
+              <span
+                class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-dark font-title"
+                >37</span
+              >
+              <span
+                class="text-xs sm:text-sm md:text-base lg:text-lg text-middle ml-1 sm:ml-2"
+                >jours</span
+              >
+              <div class="text-center w-full mt-1">
+                <span class="text-xs text-middle/70">Temps de traitement</span>
+              </div>
             </div>
           </div>
           <p class="card-title-dark mt-8 h-auto md:h-24">
-            Bilan J+37 : déjà obsolète.
+            Des heures passées à faible valeur ajoutée.
             <br />
-            Tu paies pour la saisie, pas pour de la stratégie.
+            37 jours plus tard, les données ne sont plus à jour.
             <br />
-            Un coût caché énorme pour ton entreprise.
+            Il est difficle d'avoir une visibilité financière.
           </p>
         </div>
 
@@ -110,28 +114,38 @@
               <span
                 v-for="(ann, i) in onesnapAnnotations"
                 :key="i"
-                class="absolute leading-relaxed"
+                class="absolute leading-relaxed whitespace-pre-line"
                 :class="'card-title-light'"
                 :style="{
                   left: ann.x + '%',
                   top: ann.y + '%',
                   transform: 'translateY(-0.3em)',
                 }"
+                >{{ ann.text }}</span
               >
-                {{ ann.text }}
-              </span>
             </div>
+          </div>
+          <div class="flex justify-start -mt-12 ml-2">
             <div
-              class="absolute bottom-4 left-4 bg-dark/80 backdrop-blur-sm rounded-xl px-5 py-2 shadow-lg border border-white/10"
+              class="bg-dark/80 backdrop-blur-sm rounded-xl px-5 py-2 shadow-lg border border-white/10"
             >
-              <span class="text-5xl font-bold text-accent font-title">3</span>
-              <span class="text-lg text-white/60 ml-2">jours</span>
+              <span
+                class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-accent font-title"
+                >10</span
+              >
+              <span
+                class="text-xs sm:text-sm md:text-base lg:text-lg text-white/60 ml-1 sm:ml-2"
+                >minutes</span
+              >
+              <div class="text-center w-full mt-1">
+                <span class="text-xs text-white/40">Temps de traitement</span>
+              </div>
             </div>
           </div>
           <p class="card-title-light mt-8 h-auto md:h-24">
-            Les données sont à jour et offrent une vision financière complète
-            dans un dashboard clair : chiffre d'affaires, liquidité, paiements,
-            charges, rentabilité, etc.
+            Un tableau de bord à jour offre une meilleure visibilité
+            <br />
+            afin de prendre les bonnes décisions sans aucune prise de tête.
           </p>
         </div>
       </div>
@@ -148,6 +162,7 @@
 
     <!-- COMMENT CA MARCHE -->
     <UiSection
+      id="how-it-works"
       variant="light"
       subtitle="OneSnap, comment ça marche"
       title="3 étapes. C'est tout."
@@ -214,10 +229,10 @@
                     </svg>
                   </div>
                   <h4 class="card-title-dark mb-2">
-                    En pièces jointes par email
+                    En pièces jointes par e-mail
                   </h4>
                   <p class="body-dark">
-                    Transfère les factures par email, elles arrivent
+                    Transfères les factures par e-mail, elles arrivent
                     automatiquement.
                   </p>
                 </UiCard>
@@ -259,9 +274,7 @@
                     class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-accent text-dark font-title text-lg mb-4"
                     >2</span
                   >
-                  <h3 class="sub-title-light mb-2">
-                    Les petites mains s'en occupent
-                  </h3>
+                  <h3 class="sub-title-light mb-2">L'équipe s'en occupent</h3>
                   <p class="body-light">
                     Les données sont extraites, triées, catégorisées au fur et à
                     mesure pour une comptabilité toujours à jour.
@@ -296,11 +309,11 @@
                     >1</span
                   >
                   <h3 class="sub-title-dark mb-2">
-                    Les clients transmet les justificatifs
+                    Les clients transmettent les justificatifs
                   </h3>
                   <p class="body-dark">
-                    Chaque client peut transmettre ses justificatifs et reçu
-                    bancaire sur le mail ou le numero whatsapp fournis. Les
+                    Chaque client peut transmettre ses justificatifs et reçus
+                    bancaires sur le mail ou le numero whatsapp fourni. Les
                     données arrivent directement traitées et intégrées dans son
                     espace comptable.
                   </p>
@@ -315,10 +328,9 @@
                   Validation des données extraites
                 </h3>
                 <p class="body-dark">
-                  La majorité de l'extraction est correcte. Cependant, un petit
-                  nombre de factures peuvent contenir des erreurs qui
-                  nécessitent une correction manuelle. Les entrées sont alors
-                  générées.
+                  Le logiciel pré-mâche 95% du travail, et notre équipe valide
+                  ou corrige manuellement les derniers détails pour te garantir
+                  des entrées comptables parfaitement générées.
                 </p>
               </UiCard>
             </div>
@@ -342,7 +354,7 @@
                   </p>
                 </UiCard>
                 <UiCard variant="dark">
-                  <h4 class="card-title-light mb-2">Raprochement bancaire</h4>
+                  <h4 class="card-title-light mb-2">Rapprochement bancaire</h4>
                   <p class="body-light">
                     Le logiciel rapproche automatiquement les paiements
                     bancaires avec les factures.
@@ -353,7 +365,7 @@
                     Entrée manuelle et bouclement
                   </h4>
                   <p class="body-light">
-                    Il reste a créer les entrées restantes (ammortissements,
+                    Il reste a créer les entrées restantes (amortissements,
                     salaires) et effectuer le bouclement.
                   </p>
                 </UiCard>
@@ -366,6 +378,7 @@
 
     <!-- FONCTIONNALITES -->
     <UiSection
+      id="features"
       variant="dark"
       subtitle="Fonctionnalités"
       title="Tout ce qu'il te faut. Rien de superflu."
@@ -420,7 +433,7 @@
             'TVA suisse',
             'Dashboard temps réel',
             'Partage fiduciaire',
-            'Support email',
+            'Support e-mail',
           ]"
           cta-label="Essayer 30 jours gratuits"
           cta-href="#"
@@ -508,7 +521,9 @@
       <div class="flex flex-col gap-3">
         <UiFaqItem v-for="f in faqs" :key="f.q">
           <template #question>{{ f.q }}</template>
-          <template #answer>{{ f.a }}</template>
+          <template #answer
+            ><span v-html="f.a.replace(/\n/g, '<br>')"
+          /></template>
         </UiFaqItem>
       </div>
     </UiSection>
@@ -548,7 +563,7 @@ const features = [
   {
     icon: "M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z",
     title: "Tableau de bord",
-    desc: "Vision temps réel — trésorerie, CA, charges, rentabilité, payements.",
+    desc: "Un espace clair pour suivre les finances en direct — trésorerie, CA, charges, rentabilité, paiements.",
   },
   {
     icon: "M3 3v1.5M3 21v-6m0 0l2.77-.693a9 9 0 016.208.682l.108.054a9 9 0 006.086.71l3.114-.732a48.524 48.524 0 01-.005-10.499l-3.11.732a9 9 0 01-6.085-.711l-.108-.054a9 9 0 00-6.208-.682L3 4.5M3 15V4.5",
@@ -557,13 +572,13 @@ const features = [
   },
   {
     icon: "M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5",
-    title: "Multi devises",
+    title: "Multi-devises",
     desc: "Gestion des transactions dans plusieurs devises.",
   },
   {
     icon: "M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z",
-    title: "Espaces partagés",
-    desc: "Espace partagé entre comptable, entreprise et autres tiers.",
+    title: "Espace partagé",
+    desc: "Espace partagé entre comptable et entreprise pour que vous arrêtiez de courir après des informations.",
   },
   {
     icon: "M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
@@ -613,21 +628,16 @@ const confiance = [
 const faqs = [
   {
     q: "Est-ce que ça remplace ma fiduciaire ?",
-    a: `Non, OneSnap n'a pas vocation à remplacer votre fiduciaire. OneSnap automatise la partie la plus chronophage : la saisie, la catégorisation et l'extraction des données comptables. Votre fiduciaire conserve le conseil fiscal, le bouclement annuel et les décisions stratégiques.
-
-    C'est ce qu'on appelle le modèle "pré-comptabilité parfaite" : vous arrivez chez votre fiduciaire avec une comptabilité déjà prête, et vous ne payez que pour la valeur ajoutée (conseil, optimisation), pas pour la saisie.`,
+    a: `Non, OneSnap n'a pas vocation à remplacer ta fiduciaire. OneSnap automatise la partie la plus chronophage : la saisie et le classement. Tu arrives chez ton comptable avec des chiffres déjà carrés, et tu ne payes que pour du conseil, pas pour de la frappe au clavier.`,
   },
   {
-    q: "Est-ce que mon fiduciaire peut travailler avec OneSnap ?",
+    q: "Est-ce que ma fiduciaire peut travailler avec OneSnap ?",
     a: `Oui, OneSnap est conçu pour s'intégrer dans le flux de travail existant des fiduciaires.
-
+    
     La plateforme permet :
-    
-    - Un espace partagé comptable / client / tiers
-    - L'export structuré des écritures comptables
-    - La revue et validation par un expert directement dans l'outil
-    
-    Les fiduciaires suisses font face à une pénurie de personnel qualifié (80 % des cabinets ont moins de 10 employés). OneSnap automatise la saisie qu'ils n'ont plus les ressources humaines pour effectuer, leur permettant de se concentrer sur le conseil.`,
+    - Un espace partagé comptable / client / tiers,
+    - L'export structuré des écritures comptables,
+    - La revue et validation par un expert directement dans l'outil.`,
   },
   {
     q: "Est-ce que je vais comprendre comment ça marche ?",
@@ -638,10 +648,6 @@ const faqs = [
   {
     q: "OneSnap est-il fiable ?",
     a: "Tes données t'appartiennent. Tu peux tout exporter, quand tu veux. PDF, Excel, formats comptables. Pas de lock-in. Si tu pars, tu repars avec tout.",
-  },
-  {
-    q: "Ma fiduciaire va-t-elle accepter ?",
-    a: "Les fiduciaires adorent OneSnap. Elles reçoivent les données déjà prêtes, font moins de travail de base, et se concentrent sur ce qui compte : le conseil. Si ta fiduciaire résiste, dis-nous. On peut lui montrer.",
   },
   {
     q: "Je n'ai pas le temps de mettre en place un nouveau système.",

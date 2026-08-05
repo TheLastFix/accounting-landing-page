@@ -8,26 +8,22 @@
       {
         "x": 0.0,
         "y": 13.66,
-        "text": "Reçus perdus ?",
-        "weight": "normal"
+        "text": "Reçus perdus ?"
       },
       {
         "x": 50.0,
         "y": 37.0,
-        "text": "Accumulation",
-        "weight": "normal"
-      },
-      {
-        "x": 0,
-        "y": 73,
-        "text": "Saisie manuelle lente",
-        "weight": "normal"
+        "text": "Accumulation"
       },
       {
         "x": 0.0,
         "y": 56,
-        "text": "Classement manuel",
-        "weight": "normal"
+        "text": "Classement manuel"
+      },
+      {
+        "x": 0,
+        "y": 73,
+        "text": "Saisie manuelle lente"
       }
     ]
   },
@@ -40,20 +36,12 @@
       {
         "x": 0.09,
         "y": 11.28,
-        "text": "Capture instantanée",
-        "weight": "normal"
+        "text": "Tu prends les reçus en photos"
       },
       {
         "x": 0.09,
         "y": 76.49,
-        "text": "Les mains invisibles se",
-        "weight": "normal"
-      },
-      {
-        "x": 0.09,
-        "y": 79.68,
-        "text": "mettent au travail.",
-        "weight": "normal"
+        "text": "OneSnap prend le relais\n trie, calcule et range\nchaque document à sa place."
       }
     ]
   }

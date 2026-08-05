@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const links = [
-  { label: "Bénéfices", href: "#benefices" },
-  { label: "Comment", href: "#comment" },
-  { label: "Prix", href: "#prix" },
+  { label: "Home", href: "#home" },
+  { label: "Comment ça marche", href: "#how-it-works" },
+  { label: "Fonctionnalités", href: "#features" },
   { label: "FAQ", href: "#faq" },
 ];
 </script>
