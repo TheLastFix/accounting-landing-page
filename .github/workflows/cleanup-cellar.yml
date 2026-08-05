@@ -1,0 +1,35 @@
+# Weekly cleanup of stale landing assets on Cellar.
+# Safety rules: see scripts/cellar-cleanup.py (only unreferenced objects
+# older than the retention window are deleted).
+name: Cleanup stale landing assets
+
+on:
+  schedule:
+    - cron: "23 3 * * 1" # weekly, Monday 03:23 UTC
+  workflow_dispatch: # Allow manual trigger from the Actions tab
+
+permissions:
+  contents: read
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install boto3
+        run: pip install boto3==1.43.64
+
+      - name: Run cleanup
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.CELLAR_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.CELLAR_KEY_SECRET }}
+          CELLAR_BUCKET: ${{ secrets.CELLAR_BUCKET }}
+          CELLAR_HOST: ${{ secrets.CELLAR_HOST }}
+        run: python scripts/cellar-cleanup.py

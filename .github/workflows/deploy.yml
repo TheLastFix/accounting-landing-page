@@ -1,0 +1,80 @@
+# Landing deploy pipeline — same pattern as the accounting app
+# (see ../accounting-frontend/specifications/data_flow/static-files-serving.md).
+# The Django backend serves the landing HTML from the bucket; assets are
+# referenced with the CDN URL baked in at build time.
+name: Build and Deploy Landing to Cellar
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # Allow manual trigger from the Actions tab
+
+# Deploys queue instead of running concurrently: cancelling an in-flight
+# `aws s3 sync` would leave the bucket with a partially uploaded build
+# (no cancel-in-progress on purpose).
+concurrency:
+  group: deploy-landing
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout repository code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # Step 4: Build the static site with the bucket CDN URL
+      - name: Build landing
+        env:
+          LANDING_CDN_URL: https://${{ secrets.CELLAR_BUCKET }}.${{ secrets.CELLAR_HOST }}/landing
+        run: npm run build
+
+      # Step 5: Sync build to Cellar bucket under the /landing prefix
+      # Credentials are passed as env vars: aws-cli reads them natively, so
+      # nothing is written to ~/.aws/credentials on the runner.
+      - name: Sync build to Cellar bucket
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.CELLAR_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.CELLAR_KEY_SECRET }}
+          # Cellar (Ceph) rejects the streaming-trailer/checksum requests of
+          # aws-cli 2.23+ (411 Length Required) — only send checksums when required
+          AWS_REQUEST_CHECKSUM_CALCULATION: WHEN_REQUIRED
+          AWS_RESPONSE_CHECKSUM_VALIDATION: WHEN_REQUIRED
+        run: |
+          # Hashed assets (_nuxt/ chunks, CSS, images): immutable 1-year cache.
+          # builds/ is excluded — latest.json and meta/*.json are stable URLs
+          # whose content changes on every deploy, they must be revalidated.
+          aws s3 sync ./.output/public/_nuxt s3://${{ secrets.CELLAR_BUCKET }}/landing/_nuxt \
+            --endpoint-url https://${{ secrets.CELLAR_HOST }} \
+            --exclude "builds/*" \
+            --cache-control "public, max-age=31536000, immutable"
+          # Stable-URL files (index.html, _payload.json, favicon.svg,
+          # robots.txt, 200/404.html): must be revalidated so a new deploy is
+          # picked up immediately. cp --recursive + metadata-directive REPLACE
+          # force the header refresh even when the content is unchanged.
+          aws s3 cp ./.output/public s3://${{ secrets.CELLAR_BUCKET }}/landing \
+            --recursive \
+            --endpoint-url https://${{ secrets.CELLAR_HOST }} \
+            --exclude "_nuxt/*" \
+            --metadata-directive REPLACE \
+            --cache-control "no-cache"
+          # appManifest build files, revalidated like the rest of the stable set
+          aws s3 cp ./.output/public/_nuxt/builds s3://${{ secrets.CELLAR_BUCKET }}/landing/_nuxt/builds \
+            --recursive \
+            --endpoint-url https://${{ secrets.CELLAR_HOST }} \
+            --metadata-directive REPLACE \
+            --cache-control "no-cache"

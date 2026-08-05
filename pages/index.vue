@@ -26,7 +26,7 @@
         <p class="text-white/40 text-sm">30 jours gratuits. Sans engagement.</p>
         <div class="mt-10 h-[350px]">
           <img
-            src="/public/home-2.svg"
+            src="~/assets/images/home-2.svg"
             alt="OneSnap - Ton équipe en backup qui s'active pour trier tes factures avec le sourire."
             class="w-full h-full object-contain"
           />
@@ -53,7 +53,7 @@
           </h3>
           <div class="relative">
             <img
-              src="/regular-flow.svg"
+              src="~/assets/images/regular-flow.svg"
               alt="Le flux comptable classique"
               class="w-full h-auto"
             />
@@ -106,7 +106,7 @@
           <h3 class="sub-title-light text-center md:text-left">Avec OneSnap</h3>
           <div class="relative">
             <img
-              src="/onesnap-flow.svg"
+              src="~/assets/images/onesnap-flow.svg"
               alt="Le flux comptable avec OneSnap"
               class="w-full h-auto"
             />
@@ -265,7 +265,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div class="relative">
                 <img
-                  src="/how-it-works.svg"
+                  src="~/assets/images/how-it-works.svg"
                   alt=""
                   class="absolute right-full top-1/2 -translate-y-1/2 max-h-full w-auto"
                 />
@@ -536,9 +536,9 @@
 import flowAnnotations from "~/data/flow-annotations.json";
 
 const regularAnnotations =
-  flowAnnotations["public/regular-flow.svg"].annotations;
+  flowAnnotations["assets/images/regular-flow.svg"].annotations;
 const onesnapAnnotations =
-  flowAnnotations["public/onesnap-flow.svg"].annotations;
+  flowAnnotations["assets/images/onesnap-flow.svg"].annotations;
 const features = [
   {
     icon: "M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5",

@@ -12,13 +12,13 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 
 const SVG_FILES = [
-  'public/regular-flow.svg',
-  'public/onesnap-flow.svg',
+  'assets/images/regular-flow.svg',
+  'assets/images/onesnap-flow.svg',
 ];
 
 const NORMALIZE_ONLY = [
-  'public/home-2.svg',
-  'public/how-it-works.svg',
+  'assets/images/home-2.svg',
+  'assets/images/how-it-works.svg',
 ];
 
 function mapStrokeWidth(raw) {

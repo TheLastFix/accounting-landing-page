@@ -1,5 +1,5 @@
 {
-  "public/regular-flow.svg": {
+  "assets/images/regular-flow.svg": {
     "viewBox": {
       "width": 800,
       "height": 1000
@@ -27,7 +27,7 @@
       }
     ]
   },
-  "public/onesnap-flow.svg": {
+  "assets/images/onesnap-flow.svg": {
     "viewBox": {
       "width": 800,
       "height": 1000

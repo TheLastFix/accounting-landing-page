@@ -13,7 +13,7 @@ const links = [
   >
     <div class="max-w-5xl mx-auto px-8 py-4 flex items-center gap-8">
       <NuxtLink to="/" class="mr-auto flex items-center">
-        <img src="/logo.svg" alt="OneSnap" class="h-12" />
+        <img src="~/assets/images/logo.svg" alt="OneSnap" class="h-12" />
       </NuxtLink>
       <div class="hidden md:flex items-center gap-6">
         <a
