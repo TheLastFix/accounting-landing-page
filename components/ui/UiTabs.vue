@@ -1,17 +1,31 @@
 <template>
   <div class="flex flex-col w-full">
-    <div ref="tablistEl" class="flex justify-center border-b border-white mb-8 relative" role="tablist">
+    <div
+      ref="tablistEl"
+      class="flex justify-center overflow-x-auto border-b border-white mb-6 md:mb-8 relative"
+      role="tablist"
+    >
       <button
         v-for="tab in tabs"
         :key="tab.key"
         :data-tab="tab.key"
         role="tab"
         :aria-selected="currentTab === tab.key"
-        class="px-6 py-3 section-label transition-colors"
-        :class="currentTab === tab.key ? 'text-middle' : 'text-middle hover:text-accent'"
+        class="group inline-flex items-center gap-2 px-4 py-2.5 md:px-6 md:py-3 section-label text-middle transition-colors shrink-0"
         @click="currentTab = tab.key"
       >
-        {{ tab.title }}
+        <span
+          v-if="tab.number"
+          class="inline-flex items-center justify-center w-5 h-5 rounded-full text-[10px] font-bold shrink-0 transition-colors"
+          :class="
+            currentTab === tab.key
+              ? 'bg-accent text-dark'
+              : 'bg-middle/20 text-middle group-hover:bg-accent group-hover:text-dark'
+          "
+          >{{ tab.number }}</span
+        >
+        <span class="md:hidden">{{ tab.shortTitle || tab.title }}</span>
+        <span class="hidden md:inline">{{ tab.title }}</span>
       </button>
       <span
         class="absolute bottom-0 h-0.5 bg-accent transition-all duration-300 ease"
@@ -30,11 +44,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, nextTick, onMounted } from "vue";
+import { ref, watch, nextTick, onMounted, onBeforeUnmount } from "vue";
 
 export interface TabItem {
   key: string;
   title: string;
+  number?: number;
+  shortTitle?: string;
 }
 
 interface Props {
@@ -58,7 +74,21 @@ function updateUnderline() {
   underlineWidth.value = btn.offsetWidth;
 }
 
-onMounted(updateUnderline);
+let resizeObserver: ResizeObserver | null = null;
+
+onMounted(() => {
+  updateUnderline();
+  // La police Google Fonts charge après le montage : recalcule la position quand elle est prête
+  document.fonts?.ready?.then(updateUnderline);
+  window.addEventListener("resize", updateUnderline);
+  resizeObserver = new ResizeObserver(updateUnderline);
+  if (tablistEl.value) resizeObserver.observe(tablistEl.value);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("resize", updateUnderline);
+  resizeObserver?.disconnect();
+});
 
 watch(currentTab, (newTab, oldTab) => {
   if (!oldTab || !newTab) return;

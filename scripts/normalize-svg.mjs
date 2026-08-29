@@ -3,8 +3,8 @@
  * Normalizes flow SVGs exported from Gravit Designer:
  * - Maps stroke widths to 2 levels: thin (1.5) and thick (3)
  * - Adds vector-effect="non-scaling-stroke" on all stroked elements
- * - Extracts <text> annotations for HTML overlay
- * - Removes <text> elements and their clipPaths from the SVG
+ * - Extracts <text> annotations (any transform format, any wrapper) for HTML overlay
+ * - Removes <text> elements and orphaned clipPaths from the SVG
  *
  * Usage: node scripts/normalize-svg.mjs
  */
@@ -12,8 +12,10 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'fs';
 
 const SVG_FILES = [
-  'assets/images/regular-flow.svg',
-  'assets/images/onesnap-flow.svg',
+  'assets/images/regular-flow-horizontal.svg',
+  'assets/images/onesnap-flow-horizontal.svg',
+  'assets/images/regular-flow-vertical.svg',
+  'assets/images/onesnap-flow-vertical.svg',
 ];
 
 const NORMALIZE_ONLY = [
@@ -29,10 +31,33 @@ function mapStrokeWidth(raw) {
   return '6';
 }
 
+// Parse transform="matrix(...)" or "translate(...)" regardless of spacing.
+// Returns [x, y] in design coordinates, or null.
+function parseTextPosition(transform) {
+  if (!transform) return null;
+  let m = transform.match(/matrix\(\s*([^)]*)\)/);
+  if (m) {
+    const nums = m[1].trim().split(/[\s,]+/).map(Number);
+    if (nums.length >= 6 && nums.every((n) => !isNaN(n))) {
+      // matrix(a b c d e f) -> translation is e, f
+      return [nums[4], nums[5]];
+    }
+    return null;
+  }
+  m = transform.match(/translate\(\s*([^)]*)\)/);
+  if (m) {
+    const nums = m[1].trim().split(/[\s,]+/).map(Number);
+    if (nums.length >= 1 && nums.every((n) => !isNaN(n))) {
+      return [nums[0], nums[1] ?? 0];
+    }
+  }
+  return null;
+}
+
 function processFile(filepath) {
   let svg = readFileSync(filepath, 'utf-8');
 
-  const vb = svg.match(/viewBox="0 0 (\d+) (\d+)"/);
+  const vb = svg.match(/viewBox="0 0 ([\d.]+) ([\d.]+)"/);
   if (!vb) throw new Error(`No viewBox in ${filepath}`);
   const vw = +vb[1], vh = +vb[2];
 
@@ -51,39 +76,46 @@ function processFile(filepath) {
     }
   );
 
-  // 3. Extract text annotations and mark blocks for removal
+  // 3. Extract ALL text annotations regardless of wrapper structure,
+  //    then remove the <text> elements. A text that cannot be parsed is
+  //    KEPT in the SVG and reported, never silently deleted.
   const annotations = [];
-  const blocksToRemove = [];
-
-  const blockRe = /<g\s+clip-path="url\(#([^"]+)\)"[^>]*>([\s\S]*?)<\/g>\s*<defs>[\s\S]*?<clipPath[^>]*?id="\1"[^>]*?>[\s\S]*?<\/clipPath>\s*<\/defs>/g;
-
-  let m;
-  while ((m = blockRe.exec(svg)) !== null) {
-    const inner = m[2];
-    if (!inner.includes('<text')) continue;
-
-    blocksToRemove.push(m[0]);
-
-    const textRe = /<text\s+transform="matrix\(1,0,0,1,([\d.]+),([\d.]+)\)"\s+style="([^"]*)">(.*?)<\/text>/g;
-    let t;
-    while ((t = textRe.exec(inner)) !== null) {
-      const wm = t[3].match(/font-weight:(\d+)/);
+  const warnings = [];
+  const textRe = /<text\b[^>]*>([\s\S]*?)<\/text>/g;
+  svg = svg.replace(textRe, (full, inner) => {
+    const tag = full.slice(0, full.indexOf('>') + 1);
+    const transform = (tag.match(/transform="([^"]*)"/) || [])[1];
+    const pos = parseTextPosition(transform);
+    const text = inner.replace(/<[^>]+>/g, '').trim();
+    const style = (tag.match(/style="([^"]*)"/) || [])[1];
+    const wm = style.match(/font-weight:(\d+)/);
+    if (pos && text) {
       annotations.push({
-        x: +(parseFloat(t[1]) / vw * 100).toFixed(2),
-        y: +(parseFloat(t[2]) / vh * 100).toFixed(2),
-        text: t[4].trim(),
+        x: +(pos[0] / vw * 100).toFixed(2),
+        y: +(pos[1] / vh * 100).toFixed(2),
+        text,
         weight: wm && +wm[1] >= 700 ? 'bold' : 'normal',
       });
+      return ''; // drop the extracted text element
     }
-  }
+    if (text) {
+      warnings.push(
+        `  ⚠ ${filepath}: texte conservé (transform non reconnu) "${text.slice(0, 60)}..." transform="${transform}"`
+      );
+      return full; // keep it — never delete what we cannot extract
+    }
+    return ''; // empty text, safe to drop
+  });
 
-  // 4. Remove text blocks and their clipPath defs
-  for (const block of blocksToRemove) {
-    svg = svg.replace(block, '');
-  }
+  // 4. Remove clipPath defs that are no longer referenced
+  svg = svg.replace(
+    /<clipPath[^>]*id="(_clipPath_[^"]+)"[^>]*>[\s\S]*?<\/clipPath>/g,
+    (full, id) => (svg.includes(`url(#${id})`) ? full : '')
+  );
 
   writeFileSync(filepath, svg);
   console.log(`  ${filepath}: ${annotations.length} annotations extracted`);
+  for (const w of warnings) console.log(w);
 
   return { viewBox: { width: vw, height: vh }, annotations };
 }

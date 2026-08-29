@@ -38,9 +38,14 @@ jobs:
         run: npm ci
 
       # Step 4: Build the static site with the bucket CDN URL
+      # NUXT_PUBLIC_API_BASE_URL comes from a GitHub Actions variable
+      # (Settings → Secrets and variables → Actions), defined outside the
+      # repo. It is baked into the client bundle at build time — the static
+      # site has no runtime environment.
       - name: Build landing
         env:
           LANDING_CDN_URL: https://${{ secrets.CELLAR_BUCKET }}.${{ secrets.CELLAR_HOST }}/landing
+          NUXT_PUBLIC_API_BASE_URL: ${{ vars.NUXT_PUBLIC_API_BASE_URL }}
         run: npm run build
 
       # Step 5: Sync build to Cellar bucket under the /landing prefix

@@ -1,47 +1,105 @@
 {
-  "assets/images/regular-flow.svg": {
+  "assets/images/regular-flow-horizontal.svg": {
     "viewBox": {
-      "width": 800,
-      "height": 1000
+      "width": 1553,
+      "height": 343
     },
     "annotations": [
       {
-        "x": 0.0,
-        "y": 13.66,
-        "text": "Reçus perdus ?"
-      },
-      {
-        "x": 50.0,
-        "y": 37.0,
-        "text": "Accumulation"
-      },
-      {
-        "x": 0.0,
-        "y": 56,
-        "text": "Classement manuel"
-      },
-      {
         "x": 0,
-        "y": 73,
-        "text": "Saisie manuelle lente"
+        "y": 7.66,
+        "text": "Reçus perdus ?",
+        "weight": "normal"
+      },
+      {
+        "x": 56,
+        "y": 7.66,
+        "text": "Classement manuel",
+        "weight": "normal"
+      },
+      {
+        "x": 33,
+        "y": 7.66,
+        "text": "Accumulation",
+        "weight": "normal"
+      },
+      {
+        "x": 79,
+        "y": 7.66,
+        "text": "Saisie chronophage",
+        "weight": "normal"
       }
     ]
   },
-  "assets/images/onesnap-flow.svg": {
+  "assets/images/onesnap-flow-horizontal.svg": {
     "viewBox": {
-      "width": 800,
-      "height": 1000
+      "width": 1553,
+      "height": 564.746
     },
     "annotations": [
       {
-        "x": 0.09,
-        "y": 11.28,
-        "text": "Tu prends les reçus en photos"
+        "x": 0,
+        "y": 4.65,
+        "text": "Capture instantanée des documents",
+        "weight": "normal"
       },
       {
-        "x": 0.09,
-        "y": 76.49,
-        "text": "OneSnap prend le relais\n trie, calcule et range\nchaque document à sa place."
+        "x": 37.17,
+        "y": 4.65,
+        "text": "OneSnap trie, calcule et range chaque document à sa place.",
+        "weight": "normal"
+      }
+    ]
+  },
+  "assets/images/regular-flow-vertical.svg": {
+    "viewBox": {
+      "width": 470,
+      "height": 1111
+    },
+    "annotations": [
+      {
+        "x": 0,
+        "y": 2.37,
+        "text": "Reçus perdus ?",
+        "weight": "normal"
+      },
+      {
+        "x": 0.2,
+        "y": 35.49,
+        "text": "Accumulation",
+        "weight": "normal"
+      },
+      {
+        "x": 48.72,
+        "y": 58.53,
+        "text": "Classement manuel",
+        "weight": "normal"
+      },
+      {
+        "x": 4.32,
+        "y": 83.53,
+        "text": "Saisie chronophage",
+        "weight": "normal"
+      }
+    ]
+  },
+  "assets/images/onesnap-flow-vertical.svg": {
+    "viewBox": {
+      "width": 501,
+      "height": 1314
+    },
+    "annotations": [
+      {
+        "x": 0,
+        "y": 6.72,
+        "text": "Capture instantanée",
+        "weight": "normal"
+      },
+      {
+        "x": 0,
+        "y": 20,
+        "text": "OneSnap trie, calcule et range chaque document à sa place.",
+        "weight": "normal"
       }
     ]
   }

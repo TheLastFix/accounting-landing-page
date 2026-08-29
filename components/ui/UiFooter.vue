@@ -1,8 +1,8 @@
 <script setup lang="ts">
 const links = [
-  { label: "Mentions légales", href: "#" },
-  { label: "Protection des données", href: "#" },
-  { label: "Contact", href: "#" },
+  { label: "Mentions légales", to: "/mentions-legales" },
+  { label: "Protection des données", to: "/protection-des-donnees" },
+  { label: "Contact", to: "/contact" },
 ];
 </script>
 
@@ -11,16 +11,24 @@ const links = [
     <div
       class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4"
     >
-      <span class="text-sm">© 2026 OneSnap — Fabriqué en Suisse 🇨🇭</span>
+      <span class="text-sm">© 2026 OneSnap — Fait avec ❤️ en 🇨🇭</span>
       <div class="flex gap-6">
-        <a
-          v-for="link in links"
-          :key="link.label"
-          :href="link.href"
-          class="text-sm hover:text-white transition-colors"
-        >
-          {{ link.label }}
-        </a>
+        <template v-for="link in links" :key="link.label">
+          <NuxtLink
+            v-if="link.to"
+            :to="link.to"
+            class="text-sm hover:text-white transition-colors"
+          >
+            {{ link.label }}
+          </NuxtLink>
+          <a
+            v-else
+            :href="link.href"
+            class="text-sm hover:text-white transition-colors"
+          >
+            {{ link.label }}
+          </a>
+        </template>
       </div>
     </div>
   </footer>

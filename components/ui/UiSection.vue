@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface Props {
-  variant?: "dark" | "light" | "accent";
+  variant?: "dark" | "light" | "accent" | "middle";
   title?: string;
   subtitle?: string;
   narrow?: boolean;
@@ -27,20 +27,21 @@ withDefaults(defineProps<Props>(), {
       'bg-dark': variant === 'dark',
       'bg-light': variant === 'light',
       'bg-accent': variant === 'accent',
-      'py-24': !fullHeight,
+      'bg-middle-light': variant === 'middle',
+      'py-[var(--section-padding-y)]': !fullHeight,
       'min-h-[calc(100dvh-64px)]': fullHeight,
     }"
   >
     <div
       v-if="title || subtitle"
-      class="mx-auto w-full px-8 mb-16"
+      class="mx-auto w-full px-8 mb-8 md:mb-16"
       :class="{
         'max-w-3xl': narrow,
-        'max-w-5xl': !narrow,
+        'max-w-6xl': !narrow,
         'text-center': center,
       }"
     >
-      <span class="section-label mb-4 block">{{ subtitle }}</span>
+      <span class="section-label mb-2 md:mb-4 block">{{ subtitle }}</span>
       <h2
         v-if="title"
         :class="{
@@ -55,7 +56,7 @@ withDefaults(defineProps<Props>(), {
       class="w-full"
       :class="{
         'mx-auto max-w-3xl': narrow,
-        'mx-auto max-w-5xl': !narrow && !fullWidth,
+        'mx-auto max-w-6xl': !narrow && !fullWidth,
       }"
     >
       <slot />

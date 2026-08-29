@@ -8,7 +8,7 @@ html {
   --color-medium-light: #d6f2eb;
   --color-medium-dark: #003d2e;
   --color-dark: #00281e;
-  --color-neutral: #5e8278;
+  --color-neutral: #749f93;
 
   --color-white: #ffffff;
   --color-black: #000000;
@@ -17,86 +17,102 @@ html {
 
   --font-title: "Bree Serif", serif;
   --font-body: "Inter", sans-serif;
+
+  /* Typographie fluide (Material 3) — évolue progressivement avec le viewport */
+  --font-eyebrow: clamp(
+    0.6875rem,
+    0.65rem + 0.2vw,
+    0.875rem
+  ); /* 11px -> 14px */
+  --font-h1: clamp(2.25rem, 1.4rem + 3.8vw, 3.2rem); /* 36px -> 51px */
+  --font-h2: clamp(1.625rem, 1.3rem + 1.5vw, 2.75rem); /* 26px -> 44px */
+  --font-h3: clamp(1.125rem, 0.95rem + 1vw, 1.75rem); /* 18px -> 28px */
+  --font-h4: clamp(1rem, 0.925rem + 0.4vw, 1.375rem); /* 16px -> 22px */
+  --font-body-size: clamp(
+    0.875rem,
+    0.85rem + 0.15vw,
+    1.0625rem
+  ); /* 14px -> 17px */
+  --section-padding-y: clamp(2rem, 4.5vw, 6rem); /* 32px -> 96px */
 }
 
 .title {
   font-family: var(--font-title);
-  font-size: 3rem;
+  font-size: var(--font-h1);
   line-height: 1.25;
-}
-@media (min-width: 768px) {
-  .title {
-    font-size: 3.2rem;
-  }
 }
 
 .section-title-light {
   font-family: var(--font-title);
-  font-size: 2.25rem;
+  font-size: var(--font-h2);
+  line-height: 1.2;
   font-weight: 600;
   color: var(--color-medium-light);
 }
 
 .section-title-dark {
   font-family: var(--font-title);
-  font-size: 2.25rem;
+  font-size: var(--font-h2);
+  line-height: 1.2;
   font-weight: 600;
   color: var(--color-medium-dark);
 }
 
 .sub-title-dark {
   font-family: var(--font-title);
-  font-size: 1.5rem;
+  font-size: var(--font-h3);
+  line-height: 1.3;
   font-weight: 600;
   color: var(--color-medium-dark);
 }
 
 .sub-title-light {
   font-family: var(--font-title);
-  font-size: 1.5rem;
+  font-size: var(--font-h3);
+  line-height: 1.3;
   font-weight: 600;
   color: var(--color-medium-light);
 }
 
 .section-label {
-  font-size: 0.75rem;
+  font-size: var(--font-eyebrow);
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   color: var(--color-neutral);
 }
 
 .card-title-light {
   font-family: var(--font-title);
-  font-size: 1.125rem;
+  font-size: var(--font-h4);
   font-weight: 600;
   color: var(--color-medium-light);
 }
 
 .card-title-dark {
   font-family: var(--font-title);
-  font-size: 1.125rem;
+  font-size: var(--font-h4);
   font-weight: 600;
   color: var(--color-medium-dark);
 }
 
 .body-light {
   font-family: var(--font-body);
-  font-size: 0.875rem;
-  line-height: 1.625;
+  font-size: var(--font-body-size);
+  line-height: 1.5;
   color: var(--color-grey-light);
 }
 
 .body-dark {
   font-family: var(--font-body);
-  font-size: 0.875rem;
-  line-height: 1.625;
+  font-size: var(--font-body-size);
+  line-height: 1.5;
   color: var(--color-grey-dark);
 }
 
 .display {
   font-family: var(--font-title);
-  font-size: 2.25rem;
+  font-size: var(--font-h2);
   font-weight: 700;
   line-height: 1;
 }

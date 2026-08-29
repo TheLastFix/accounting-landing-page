@@ -4,6 +4,13 @@ export default defineNuxtConfig({
   ssr: true,
   modules: ["@nuxtjs/tailwindcss"],
   css: ["~/assets/css/main.css"],
+  runtimeConfig: {
+    public: {
+      // En dev : NUXT_PUBLIC_API_BASE_URL=http://localhost:8000 (backend Django)
+      // En prod : https://api.onesnap.ch (définie dans .github/workflows/deploy.yml)
+      apiBaseUrl: "",
+    },
+  },
   app: {
     baseURL: "/",
     buildAssetsDir: "_nuxt",

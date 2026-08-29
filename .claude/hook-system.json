@@ -1,0 +1,15 @@
+{
+  "description": "Hooks-system configuration for accounting-backend",
+  "require_decision_log": false,
+  "use_defaults": ["base"],
+
+  "before_start": {
+    "title": "Working Guidelines — always apply:",
+    "items": [
+      "Goal is the process, not the result. Follow the given process fully — don't skip steps to rush to a solution.",
+      "Listen to the user's insights and prompts. Ignoring them wastes their time.",
+      "Always explain reasoning and architectural choices BEFORE taking action. Mention alternatives considered and why they were rejected. Do not code until the approach is validated.",
+      "Write all code coment in english."
+    ]
+  }
+}

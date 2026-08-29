@@ -73,3 +73,11 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+## Video optimization
+
+Use these comands to optimize the videos. It will create two video in the asset folder (WebP and mp4)
+
+```bash
+./scripts/optimize-video.sh ~/Desktop/dashboard.mov
+```
