@@ -63,11 +63,11 @@
         :annotations="flows[s.flow][s.format].annotations"
         :caption="flows[s.flow].caption"
       >
-        <template v-if="s.id === 'workflow-onesnap'" #video>
+        <template v-if="s.flow === 'avecOneSnap'" #video>
           <UiVideo
-            webm-src="/videos/dashboard.webm"
-            mp4-src="/videos/dashboard.mp4"
-            poster-src="/videos/dashboard-poster.jpg"
+            :webm-src="`${cdnUrl}/videos/dashboard.webm`"
+            :mp4-src="`${cdnUrl}/videos/dashboard.mp4`"
+            :poster-src="`${cdnUrl}/videos/dashboard-poster.jpg`"
             alt-text="Demo du Dashboard Analytics"
           />
         </template>
@@ -458,6 +458,9 @@ import regularFlowHorizontal from "~/assets/images/regular-flow-horizontal.svg";
 import onesnapFlowHorizontal from "~/assets/images/onesnap-flow-horizontal.svg";
 import regularFlowVertical from "~/assets/images/regular-flow-vertical.svg";
 import onesnapFlowVertical from "~/assets/images/onesnap-flow-vertical.svg";
+
+const config = useRuntimeConfig();
+const cdnUrl = config.public.cdnUrl || "";
 
 const regularAnnotations = flowAnnotations[
   "assets/images/regular-flow-horizontal.svg"

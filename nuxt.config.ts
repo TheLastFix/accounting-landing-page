@@ -9,6 +9,7 @@ export default defineNuxtConfig({
       // En dev : NUXT_PUBLIC_API_BASE_URL=http://localhost:8000 (backend Django)
       // En prod : https://api.onesnap.ch (définie dans .github/workflows/deploy.yml)
       apiBaseUrl: "",
+      cdnUrl: process.env.LANDING_CDN_URL || "",
     },
   },
   app: {
