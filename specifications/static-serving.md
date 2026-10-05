@@ -21,9 +21,9 @@ _please put all link path absolute from the root of the project_
    ↓
 5. Browser requests the landing page (onesnap.ch / www.onesnap.ch)
    ↓
-6. [urls_landing.py](/Users/florent/Documents/accounting-backend/config/urls_landing.py) routes the domain root **and any sub-path** (`/pricing`, `/about`, …) to the [landing_page view](/Users/florent/Documents/accounting-backend/config/views_landing.py)
+6. [urls_landing.py](<backend-directory>/config/urls_landing.py) routes the domain root **and any sub-path** (`/pricing`, `/about`, …) to the [landing_page view](<backend-directory>/config/views_landing.py)
    ↓
-7. [views_landing.py](/Users/florent/Documents/accounting-backend/config/views_landing.py) (`_load_landing_html`)
+7. [views_landing.py](<backend-directory>/config/views_landing.py) (`_load_landing_html`)
    - Fetches `/landing/index.html` from the bucket (cached 60 s, last known-good fallback)
    - View returns it as-is with `Cache-Control: no-cache`
      ↓

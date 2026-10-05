@@ -36,9 +36,12 @@ const isCaptionOverlay = computed(
 );
 
 // Carte sombre isolée sur fond clair continu (design "fond dominant + cartes")
-const cardClass = computed(() =>
-  props.cardDark ? "bg-dark rounded-2xl shadow-lg p-6 md:p-10" : "",
-);
+const cardClass = computed(() => {
+  if (!props.cardDark) return "";
+  return props.vertical
+    ? "bg-dark -mx-5 sm:mx-0 rounded-none sm:rounded-2xl shadow-none sm:shadow-lg px-5 py-8 sm:p-8 md:p-10"
+    : "bg-dark rounded-2xl shadow-lg p-6 md:p-10";
+});
 </script>
 
 <template>

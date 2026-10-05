@@ -2,36 +2,29 @@
   <div class="font-body antialiased">
     <!-- HERO -->
     <UiSection id="home" variant="dark" narrow center full-height>
-      <div class="text-center">
+      <div class="text-center px-1 sm:px-0">
         <span class="section-label block mb-3"
           >La comptabilité sans effort</span
         >
-        <h1 class="section-title-light mt-4 mb-6">
+        <h1 class="section-title-light mt-3 sm:mt-4 mb-4 sm:mb-6">
           Une photo, et c'est comptabilisé.
         </h1>
-        <p class="text-accent text-lg md:text-xl mb-10">
-          30 minutes par mois pour une vision financière nette. <br />
+        <p class="text-accent text-base sm:text-lg md:text-xl mb-6 sm:mb-8 leading-relaxed">
+          30 minutes par mois pour une vision financière nette.
           Laisse OneSnap s'occuper du reste.
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+        <div class="flex justify-center mb-8 sm:mb-6">
           <UiButton variant="accent" to="/contact" size="lg"
-            >Essayer gratuitement</UiButton
-          >
-          <UiButton
-            variant="outline"
-            href="#workflow"
-            size="lg"
-            class="!text-white !border-accent !border-2 hover:!bg-accent hover:!text-dark"
-            >Comment ça marche</UiButton
+            >Réserver une démo</UiButton
           >
         </div>
-        <p class="text-white/80 text-sm">
+        <p class="hidden sm:block text-white/80 text-sm leading-relaxed">
           ✓ 30 jours gratuits · ✓ Sans engagement · ✓ Configuration en 2 min
         </p>
-        <p class="text-white/60 text-sm mt-1">
+        <p class="hidden sm:block text-white/60 text-sm mt-1">
           Pensé pour les indépendants, PME et startups en Suisse.
         </p>
-        <div class="mt-4 md:mt-10 h-[250px] md:h-[350px]">
+        <div class="mt-8 md:mt-10 h-[220px] sm:h-[250px] md:h-[350px]">
           <img
             src="~/assets/images/home-2.svg"
             alt="OneSnap - Ton équipe en backup qui s'active pour trier tes factures avec le sourire."
@@ -398,7 +391,7 @@
     <!-- DEMO -->
     <UiSection id="demo" variant="light">
       <div
-        class="bg-dark rounded-2xl shadow-lg p-8 md:p-14 flex flex-col md:flex-row md:items-center md:justify-between gap-8"
+        class="bg-dark -mx-5 sm:mx-0 rounded-none sm:rounded-2xl shadow-none sm:shadow-lg px-5 py-10 sm:p-8 md:p-14 flex flex-col md:flex-row md:items-center md:justify-between gap-8"
       >
         <div>
           <h2 class="section-title-light mb-4">Voir OneSnap en action.</h2>
@@ -564,7 +557,7 @@ const flowSections: FlowSection[] = [
     id: "workflow-mobile-onesnap",
     flow: "avecOneSnap",
     format: "vertical",
-    className: "lg:hidden !pt-6",
+    className: "lg:hidden !pt-6 !pb-0 sm:!pb-[var(--section-padding-y)]",
     vertical: true,
     cardDark: true,
   },

@@ -23,7 +23,8 @@ withDefaults(defineProps<Props>(), {
     :id="id"
     class="flex flex-col justify-center"
     :class="{
-      'px-8': !fullWidth,
+      'px-5 sm:px-8': !fullWidth,
+      'py-12 md:py-0': fullHeight,
       'bg-dark': variant === 'dark',
       'bg-light': variant === 'light',
       'bg-accent': variant === 'accent',
@@ -34,7 +35,7 @@ withDefaults(defineProps<Props>(), {
   >
     <div
       v-if="title || subtitle"
-      class="mx-auto w-full px-8 mb-8 md:mb-16"
+      class="mx-auto w-full mb-8 md:mb-16"
       :class="{
         'max-w-3xl': narrow,
         'max-w-6xl': !narrow,
